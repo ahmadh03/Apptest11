@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Mobile Web App</title>
+<link href="jquery.mobile-1.4.3.min.css" rel="stylesheet" type="text/css"/>
+<script src="barcodescanner.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js" type="text/javascript"></script>
+<script src="functions.js" type="text/javascript" language="javascript" > </script>
+<script src="cordova.js" type="text/javascript" language="javascript" > </script>
+<style>
+.content {
+padding:2%;
+}
+.ar_content{
+	padding:10% 2% 2%;
+}
+.content li{
+	text-align:left;
+}
+</style>
+</head>
+<body onLoad="hideImages()">
+<script>
+  document.addEventListener("offline", onOffline, false);
+function onOffline() {
+
+	alert("No Internet Connection!");
+    //navigator.app.loadUrl("file:///C:/ViaAnanas/www/index.html", {wait:2000, loadingDialog:"Wait,Loading App", loadUrlTimeoutValue: 60000})
+$.mobile.changePage('#home_page');
+
+}
+
+</script>
+<div data-role="page" id="home_page">
+  <div data-role="header">
+    <h1>Via Ananas</h1>
+  </div>
+  <div data-role="content" style="margin-bottom:30px"> <img src="images/logo via ananas.png" alt="" width="268" height="104" style="align-content:center"/>
+
+    <div class="mybuttons" data-role="controlgroup"> <a href="#page_v" data-role="button">Product Verification</a> <a href="" data-role="button" onClick="qrscan();" data-id="scanner">QR Code Scanner</a> <a href="#page_pr" data-role="button">Our Products</a> <a href="#page_h" data-role="button">Healthy Tips</a> <a href="#page_c" data-role="button">Contact Us</a> </div>
+  </div>
+  <div data-role="footer" class="ui-bar ui-footer ui-footer-fixed">
+    <p class="status-text">Powered By Optimal Solutions</p>
+  </div>
+</div>
+<div data-role="page" id="page_v">
+  <div data-role="header">
+    <h1>Product Verification</h1>
+    <a href="#home_page" data-role="button" onClick="hideImages();" data-icon="home" data-iconpos="notext">Button</a>
+    <div id="spinner" class="spinner" style="display:none;">
+    <img id="img-spinner" src="spinner.gif" alt=""/>
+</div></div>
+  <div data-role="content">
+    <div data-role="fieldcontain">
+      <input type="text" name="textinput" id="textinput" value placeholder="Code"/>
+      <div class="mycheck" data-role="controlgroup">
+
+        <button class="ui-mini" onclick="check_get();">Check</button>
+        
+      </div>
+    </div>
+    <img src="images/GENUINE.png" id="g_image" alt="" width="146" height="122" class="imageResult" style="align-content:center;margin-top:10%"/> 
+    <img src="images/FAKE.png" id="f_image" alt="" width="146" height="122" class="imageResult" style="align-content:center; margin-top:10%"/> 
+    <img src="images/product verified.png" id="v_image" alt="" width="160" height="130" class="imageResult" style="align-content:center; margin-top:10%"/> </div>
+ </div>
+<div data-role="page" id="page_pr">
+  <div data-role="header" class="ui-header ui-header-fixed">
+    <h1>Our Products</h1>
+    <a href="#home_page" data-role="button" data-icon="home" data-iconpos="notext">Button</a> </div>
+  <div data-role="content" style="margin-top:30px"> 
+    <script type="text/javascript">
+	$("#page_pr").on("pagecontainerload",pr_get(0,5));
+    </script>
+
+	<table id="e_l" class="design table">
+    
+     </table>
+  </div>
+  <script> var x=5; </script>
+  <div data-role="controlgroup" class="mycheck">
+    <button onClick=" pr_get(x,5); x=x+5;">Load More</button>
+    <div id="spinner" class="spinner" style="display:none;"></div>
+
+  </div>
+  
+  
+ </div>
+<div data-role="page" id="page_h">
+  <div data-role="header" class="ui-header ui-header-fixed">
+    <h1>Tips & Facts</h1>
+    <a href="#home_page" data-role="button" data-icon="home" data-iconpos="notext">Button</a> 
+    </div>
+  <div data-role="content" style="margin-top:30px"> 
+      <script type="text/javascript">
+	$("#page_h").on("pagecontainerload",tips_get(0,5));
+    </script>
+
+	<table id="tips" class="design table rtl">
+    
+     </table>
+  </div>
+  <script> var t=5; </script>
+  <div data-role="controlgroup" class="mycheck">
+    <button onClick=" tips_get(t,5); t=t+5;">Load More</button>
+    <div id="spinner" class="spinner" style="display:none;"></div>
+
+  </div>
+  </div>
+
+<div data-role="page" id="page_c">
+  <div data-role="header" class="ui-header ui-header-fixed">
+    <h1>Contact Us</h1>
+    <a href="#home_page" data-role="button" data-icon="home" data-iconpos="notext">Button</a> 
+   </div>
+  <div data-role="content" style="margin-top:30px; margin-bottom:30px">     <script type="text/javascript">
+	$("#page_h").on("pagecontainerload",c_get());
+    </script>
+    	<table id="c_content" class="design table">
+    
+     </table>
+     <label>Contact US</label>
+     <div data-role="fieldcontain">
+       <input type="text" name="name_input" id="name_input" placeholder="Name" />
+       <input type="email" name="email_input" id="email_input" placeholder="Email"/>
+       <input type="tel" name="phone_input" id="phone_input" placeholder="Phone"/>
+	   <textarea cols="40" rows="8" name="message_input" id="message_input" placeholder="Message"></textarea>
+		
+     </div>
+     <div data-role="controlgroup">
+       <button onClick="send_email()">Send</button>
+     </div>
+   </div>
+  </div>
+<div data-role="page" id="page_r">
+  <div data-role="header">
+    <h1>Registration</h1>
+    <a href="#home_page" data-role="button" onClick="hideImages()" data-icon="home" data-iconpos="notext">Button</a> </div>
+  <div data-role="content" style="margin-bottom:30px; margin-top:30px">     <script type="text/javascript">
+	$("#page_r").on("pagecontainerload",country_get());
+    </script>
+     <div data-role="fieldcontain">
+       <input type="text" name="name_input" id="name_input_r" placeholder="Name" />
+
+         <select name="selectmenu2" id="selectmenu2">
+           <option value="none">Select Country</option>
+
+         </select>
+         <select name="selectmenu" id="selectmenu">
+        	<option value="none">Select Gender</option>
+           <option value="male">Male</option>
+           <option value="female">Female</option>
+         </select>
+         <input type="tel" name="phone_input" id="phone_input_r" placeholder="Phone"/>
+
+
+	<div data-role="controlgroup" class="mycheck">
+       <button onClick="register();">Register</button>
+     </div>
+     </div>
+
+   </div>
+  </div>
+<div data-role="page" id="page_m">
+  <div data-role="header">
+    <h1></h1>
+        <a href="#home_page" data-role="button" onClick="hideImages()" data-icon="home" data-iconpos="notext">Button</a>
+  </div>
+  <div data-role="content">
+  <label id="message1" style="text-align:left"></label>
+  <label id="message2" style="text-align:left"></label>
+  <label id="message3" style="text-align:left"></label>
+  <label id="message4" style="text-align:center"></label>
+  <label id="message5" style="text-align:center"></label>
+  <label id="message6" style="text-align:center"></label>
+  </div>
+  </div>
+
+</body>
+</html>
