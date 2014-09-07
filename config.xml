@@ -68,5 +68,9 @@
     <gap:splash src="img/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
         
     <gap:splash src="img/splash/winphone/splash.jpg" gap:platform="winphone" /> <!-- Windows Phone 7 480x800 -->
+	
+	   <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+	<string>114</string>
+	</gap:config-file>
     <access origin="*" />
 </widget>
