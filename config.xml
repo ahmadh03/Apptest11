@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="it.optimalsolutions.viaananas2" version="1.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" versionCode = "8" >
+<widget id="it.optimalsolutions.viaananas" version="1.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" versionCode = "8" >
     <name>Via Ananas</name>
     <description>
         Via Ananas official Application
